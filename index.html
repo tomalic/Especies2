@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espècies per embotits</title>
+  <title>Espècies per a embotits</title>
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#f4f4f8">
+
+  <!-- Icones per a mòbil / PWA (opcionalment afegeix més mides si vols) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,25 +27,27 @@
       <section id="home-screen">
         <h2>Tria l’embotit</h2>
         <div class="buttons-grid">
-          <button class="recipe-button" data-recipe="sobrassada-dolca">
-            <span class="emoji">🌶️</span>
+
+          <button class="recipe-button" data-recipe="sobrasada-dolca">
+            <img src="sobrasada-dolca.png" class="embotit-icon" alt="Sobrassada dolça">
             <span class="label">Sobrassada dolça</span>
           </button>
 
-          <button class="recipe-button" data-recipe="sobrassada-coenta">
-            <span class="emoji">🔥</span>
+          <button class="recipe-button" data-recipe="sobrasada-coenta">
+            <img src="sobrasada-coenta.png" class="embotit-icon" alt="Sobrassada coenta">
             <span class="label">Sobrassada coenta</span>
           </button>
 
           <button class="recipe-button" data-recipe="botifarrons">
-            <span class="emoji">🌭</span>
+            <img src="botifarrons.png" class="embotit-icon" alt="Botifarrons">
             <span class="label">Botifarrons</span>
           </button>
 
           <button class="recipe-button" data-recipe="camaiot">
-            <span class="emoji">🍖</span>
+            <img src="camaiot.png" class="embotit-icon" alt="Camaiot">
             <span class="label">Camaiot</span>
           </button>
+
         </div>
       </section>
 
@@ -84,5 +95,15 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    // Registre del Service Worker per PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          console.log('Error en registrar el service worker:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>

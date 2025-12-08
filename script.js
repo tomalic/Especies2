@@ -1,7 +1,7 @@
 // Receptes (g d'espècia per kg de massa)
-// Valors obtinguts directament del teu CSV
+// Ajusta els valors segons el teu full de càlcul original
 const recipes = {
-  "sobrassada-dolca": {
+  "sobrasada-dolca": {
     name: "Sobrassada dolça",
     spices: {
       "Pebre vermell dolç": 50,  // g/kg
@@ -9,9 +9,9 @@ const recipes = {
       "Sal": 25,
       "Conservant": 2
     },
-    cookTime: null // no indicat al full
+    cookTime: null
   },
-  "sobrassada-coenta": {
+  "sobrasada-coenta": {
     name: "Sobrassada coenta",
     spices: {
       "Pebre vermell dolç": 30,
@@ -28,8 +28,7 @@ const recipes = {
       "Sal": 25,
       "Pebre bo": 7
     },
-    // Del CSV: 20 minuts per a la recepta base
-    cookTime: 20
+    cookTime: 20  // minuts, si ho vols indicar
   },
   "camaiot": {
     name: "Camaiot",
@@ -38,8 +37,7 @@ const recipes = {
       "Sal": 25,
       "Pebre bo": 7
     },
-    // Del CSV: 180 minuts (3 h) per a la recepta base
-    cookTime: 180
+    cookTime: 180 // 3 hores
   }
 };
 
@@ -84,7 +82,7 @@ function updateResults() {
   if (!currentRecipeKey) return;
 
   const recipe = recipes[currentRecipeKey];
-  const kg = parseFloat(kgInput.value.replace(",", "."));
+  const kg = parseFloat(String(kgInput.value).replace(",", "."));
 
   resultsTableBody.innerHTML = "";
 
@@ -102,7 +100,6 @@ function updateResults() {
     nameCell.textContent = name;
 
     const amountCell = document.createElement("td");
-    // Arrodonim a un decimal
     amountCell.textContent = totalGrams.toFixed(1).replace(".", ",");
 
     row.appendChild(nameCell);
