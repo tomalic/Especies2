@@ -116,33 +116,11 @@ document.querySelectorAll(".recipe-button").forEach((btn) => {
 
 backButton.addEventListener("click", goHome);
 kgInput.addEventListener("input", updateResults);
-const configBtn = document.getElementById("configBtn");
-const configPanel = document.getElementById("configPanel");
-const saveConfig = document.getElementById("saveConfig");
-
 const CONFIG_KEY = "matances_config";
+const configBtn = document.getElementById("configBtn");
 
-configBtn.addEventListener("click", () => {
-  configPanel.classList.toggle("hidden");
-});
-
-saveConfig.addEventListener("click", () => {
-  const cfg = {
-    pebreVermell: val("cfg-pebre-vermell"),
-    pebreCoent: val("cfg-pebre-coent"),
-    sal: val("cfg-sal"),
-    conservant: val("cfg-conservant"),
-    pebroBo: val("cfg-pebro-bo"),
-    llavors: val("cfg-llavors"),
-    coccio: val("cfg-coccio")
-  };
-
-  localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
-  alert("Configuració desada");
-  configPanel.classList.add("hidden");
-});
-
-function val(id){
-  const v = document.getElementById(id).value;
-  return v === "" ? null : Number(v);
+if (configBtn) {
+  configBtn.addEventListener("click", () => {
+    window.location.href = "config.html";
+  });
 }
