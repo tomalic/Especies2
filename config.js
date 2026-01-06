@@ -16,7 +16,8 @@ const recipeFields = {
   "botifarrons": [
     ["Sal", "Sal (g/kg)"],
     ["Pebre bo", "Pebre bo (g/kg)"],
-    ["Pebre coent", "Pebre coent (g/kg)"]
+    ["Pebre coent", "Pebre coent (g/kg)"],
+    ["Llavors", "Llavors (g/kg)"]
   ],
   "camaiot": [
     ["Sal", "Sal (g/kg)"],
@@ -67,22 +68,24 @@ function renderFields() {
     fieldsContainer.appendChild(label);
   });
 
-  // Temps de cocció (opcional) — el posam al final per tots
-  const labelCook = document.createElement("label");
-  labelCook.textContent = "Temps de cocció (min)";
+    // Temps de cocció (opcional) — NOMÉS botifarrons i camaiot
+  if (key === "botifarrons" || key === "camaiot") {
+    const labelCook = document.createElement("label");
+    labelCook.textContent = "Temps de cocció (min)";
 
-  const inputCook = document.createElement("input");
-  inputCook.type = "number";
-  inputCook.step = "1";
-  inputCook.placeholder = "(opcional)";
-  inputCook.dataset.cook = "1";
+    const inputCook = document.createElement("input");
+    inputCook.type = "number";
+    inputCook.step = "1";
+    inputCook.placeholder = "(opcional)";
+    inputCook.dataset.cook = "1";
 
-  if (savedForRecipe.__cookTime != null) {
-    inputCook.value = savedForRecipe.__cookTime;
+    if (savedForRecipe.__cookTime != null) {
+      inputCook.value = savedForRecipe.__cookTime;
+    }
+
+    labelCook.appendChild(inputCook);
+    fieldsContainer.appendChild(labelCook);
   }
-
-  labelCook.appendChild(inputCook);
-  fieldsContainer.appendChild(labelCook);
 }
 
 // events
