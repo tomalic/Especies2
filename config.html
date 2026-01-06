@@ -13,41 +13,29 @@
       <p class="subtitle">Valors en grams per kg (g/kg)</p>
     </header>
 
-    <main>
-      <div class="config-panel">
-        <label>Pebre Vermell (g/kg)
-          <input type="number" id="cfg-pebre-vermell" step="0.1" placeholder="(opcional)">
-        </label>
+   <main>
+  <div class="config-panel">
 
-        <label>Pebre Coent (g/kg)
-          <input type="number" id="cfg-pebre-coent" step="0.1" placeholder="(opcional)">
-        </label>
+    <label>Embotit
+      <select id="recipeSelect">
+        <option value="sobrasada-dolca">Sobrassada dolça</option>
+        <option value="sobrasada-coenta">Sobrassada coenta</option>
+        <option value="botifarrons">Botifarrons</option>
+        <option value="camaiot">Camaiot</option>
+      </select>
+    </label>
 
-        <label>Sal (g/kg)
-          <input type="number" id="cfg-sal" step="0.1" placeholder="(opcional)">
-        </label>
+    <div id="fieldsContainer"></div>
 
-        <label>Conservant (g/kg)
-          <input type="number" id="cfg-conservant" step="0.1" placeholder="(opcional)">
-        </label>
+    <div class="config-actions">
+      <button id="saveConfig" class="config-btn">Desar</button>
+      <button id="clearConfig" class="config-btn">Esborrar</button>
+    </div>
 
-        <label>Pebro Bo (g/kg)
-          <input type="number" id="cfg-pebro-bo" step="0.1" placeholder="(opcional)">
-        </label>
+    <button id="backConfig" class="config-btn" style="margin-top:10px;">← Tornar</button>
 
-        <label>Llavors (g/kg)
-          <input type="number" id="cfg-llavors" step="0.1" placeholder="(opcional)">
-        </label>
-
-        <label>Temps de cocció (min)
-          <input type="number" id="cfg-coccio" step="1" placeholder="(opcional)">
-        </label>
-
-        <button id="saveConfig" class="config-btn">Desar</button>
-        <button id="clearConfig" class="config-btn">Esborrar</button>
-        <button id="backConfig" class="config-btn">← Tornar</button>
-      </div>
-    </main>
+  </div>
+</main>
 
     <footer class="app-footer">
       <small>© Tomeu Mas</small>
