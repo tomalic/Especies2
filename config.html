@@ -2,48 +2,59 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Configuració</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuració d'espècies</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Configuració</h1>
+      <p class="subtitle">Valors en grams per kg (g/kg)</p>
+    </header>
 
-  <h2 style="text-align:center; margin-top:16px;">Configuració d’espècies</h2>
+    <main>
+      <div class="config-panel">
+        <label>Pebre Vermell (g/kg)
+          <input type="number" id="cfg-pebre-vermell" step="0.1" placeholder="(opcional)">
+        </label>
 
-  <div class="config-panel">
-    <label>Pebre Vermell (g/kg)
-      <input type="number" id="cfg-pebre-vermell" step="0.1">
-    </label>
+        <label>Pebre Coent (g/kg)
+          <input type="number" id="cfg-pebre-coent" step="0.1" placeholder="(opcional)">
+        </label>
 
-    <label>Pebre Coent (g/kg)
-      <input type="number" id="cfg-pebre-coent" step="0.1">
-    </label>
+        <label>Sal (g/kg)
+          <input type="number" id="cfg-sal" step="0.1" placeholder="(opcional)">
+        </label>
 
-    <label>Sal (g/kg)
-      <input type="number" id="cfg-sal" step="0.1">
-    </label>
+        <label>Conservant (g/kg)
+          <input type="number" id="cfg-conservant" step="0.1" placeholder="(opcional)">
+        </label>
 
-    <label>Conservant (g/kg)
-      <input type="number" id="cfg-conservant" step="0.1">
-    </label>
+        <label>Pebro Bo (g/kg)
+          <input type="number" id="cfg-pebro-bo" step="0.1" placeholder="(opcional)">
+        </label>
 
-    <label>Pebro Bo (g/kg)
-      <input type="number" id="cfg-pebro-bo" step="0.1">
-    </label>
+        <label>Llavors (g/kg)
+          <input type="number" id="cfg-llavors" step="0.1" placeholder="(opcional)">
+        </label>
 
-    <label>Llavors (g/kg)
-      <input type="number" id="cfg-llavors" step="0.1">
-    </label>
+        <label>Temps de cocció (min)
+          <input type="number" id="cfg-coccio" step="1" placeholder="(opcional)">
+        </label>
 
-    <label>Temps de cocció (min)
-      <input type="number" id="cfg-coccio" step="1">
-    </label>
+        <button id="saveConfig" class="config-btn">Desar</button>
+        <button id="clearConfig" class="config-btn">Esborrar</button>
+        <button id="backConfig" class="config-btn">← Tornar</button>
+      </div>
+    </main>
 
-    <button id="saveConfig">Desar</button>
-    <button id="clearConfig" type="button">Esborrar</button>
-    <button type="button" onclick="history.back()">← Tornar</button>
+    <footer class="app-footer">
+      <small>© Tomeu Mas</small>
+    </footer>
   </div>
 
   <script src="config.js"></script>
 </body>
 </html>
+
