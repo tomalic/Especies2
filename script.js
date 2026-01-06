@@ -62,7 +62,7 @@ function openCalculator(recipeKey) {
   recipeTitle.textContent = recipe.name;
   resultsTitle.textContent = `Quantitats d'espècies`;
 
-  k  // Recupera el darrer kg per aquest embotit (si existeix)
+    // Recupera el darrer kg per aquest embotit (si existeix)
   const lastKgMap = JSON.parse(localStorage.getItem(LAST_KG_KEY) || "{}");
   const lastKg = lastKgMap[recipeKey];
 
