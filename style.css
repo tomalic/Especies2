@@ -288,6 +288,3 @@ h2 {
   flex-direction: column;
   flex: 1;
 }
-.hidden .bottom-panel{
-  display:none !important;
-}
