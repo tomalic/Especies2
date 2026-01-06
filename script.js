@@ -44,6 +44,7 @@ const recipes = {
 
 let currentRecipeKey = null;
 const CONFIG_KEY = "matances_config_by_recipe";
+const LAST_KG_KEY = "matances_last_kg_by_recipe";
 const homeScreen = document.getElementById("home-screen");
 const calculatorScreen = document.getElementById("calculator-screen");
 const bottomPanel = document.querySelector(".bottom-panel");
@@ -61,9 +62,14 @@ function openCalculator(recipeKey) {
   recipeTitle.textContent = recipe.name;
   resultsTitle.textContent = `Quantitats d'espècies`;
 
-  kgInput.value = 10;
+  k  // Recupera el darrer kg per aquest embotit (si existeix)
+  const lastKgMap = JSON.parse(localStorage.getItem(LAST_KG_KEY) || "{}");
+  const lastKg = lastKgMap[recipeKey];
+
+  kgInput.value = (typeof lastKg === "number" && !isNaN(lastKg) && lastKg > 0) ? lastKg : 10;
 
   updateResults();
+
 
   homeScreen.classList.add("hidden");
   calculatorScreen.classList.remove("hidden");
@@ -148,7 +154,19 @@ document.querySelectorAll(".recipe-button").forEach((btn) => {
 });
 
 backButton.addEventListener("click", goHome);
-kgInput.addEventListener("input", updateResults);
+kgInput.addEventListener("input", () => {
+  updateResults();
+
+  if (!currentRecipeKey) return;
+
+  const kg = parseFloat(String(kgInput.value).replace(",", "."));
+  if (isNaN(kg) || kg <= 0) return;
+
+  const lastKgMap = JSON.parse(localStorage.getItem(LAST_KG_KEY) || "{}");
+  lastKgMap[currentRecipeKey] = kg;
+  localStorage.setItem(LAST_KG_KEY, JSON.stringify(lastKgMap));
+});
+
 const configBtn = document.getElementById("configBtn");
 
 if (configBtn) {
