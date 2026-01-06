@@ -46,6 +46,7 @@ let currentRecipeKey = null;
 
 const homeScreen = document.getElementById("home-screen");
 const calculatorScreen = document.getElementById("calculator-screen");
+const bottomPanel = document.querySelector(".bottom-panel");
 const recipeTitle = document.getElementById("recipe-title");
 const kgInput = document.getElementById("kgInput");
 const resultsTitle = document.getElementById("results-title");
@@ -66,12 +67,15 @@ function openCalculator(recipeKey) {
 
   homeScreen.classList.add("hidden");
   calculatorScreen.classList.remove("hidden");
+  if (bottomPanel) bottomPanel.classList.add("hidden");
 }
 
 function goHome() {
   calculatorScreen.classList.add("hidden");
   homeScreen.classList.remove("hidden");
   currentRecipeKey = null;
+  if (bottomPanel) bottomPanel.classList.remove("hidden");
+
 }
 
 function updateResults() {
