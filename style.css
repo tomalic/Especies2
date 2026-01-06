@@ -243,3 +243,40 @@ h2 {
   font-size: 12px;
   color: #666;
 }
+/* Config page */
+.config-panel{
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.config-panel label{
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #5a2e0c;
+}
+
+.config-panel input,
+.config-panel select{
+  width: 100%;
+  margin-top: 6px;
+  padding: 0.5rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #222;
+}
+
+.config-actions{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.config-actions .config-btn{
+  width: 100%;
+}
