@@ -76,6 +76,27 @@ function updateResults() {
 
   const recipe = recipes[currentRecipeKey];
   const kg = parseFloat(String(kgInput.value).replace(",", "."));
+    // === Configuració per embotit (opcional) ===
+  const allCfg = JSON.parse(localStorage.getItem(CONFIG_KEY) || "{}");
+  const cfg = allCfg[currentRecipeKey] || {};
+
+  // Copiam espècies base
+  const finalSpices = { ...(recipe.spices || {}) };
+
+  // Si hi ha valors definits a configuració, sobreescriu / afegeix
+  Object.entries(cfg).forEach(([k, v]) => {
+    if (k === "__cookTime") return;
+    if (typeof v === "number" && !isNaN(v)) {
+      finalSpices[k] = v; // grams per kg
+    }
+  });
+
+  // Temps de cocció: si hi ha config, té prioritat
+  const finalCookTime =
+    (typeof cfg.__cookTime === "number" && !isNaN(cfg.__cookTime) && cfg.__cookTime > 0)
+      ? cfg.__cookTime
+      : recipe.cookTime;
+
 
   resultsTableBody.innerHTML = "";
 
@@ -84,7 +105,7 @@ function updateResults() {
     return;
   }
 
-  Object.entries(recipe.spices).forEach(([name, gramsPerKg]) => {
+ Object.entries(finalSpices).forEach(([name, gramsPerKg]) => {
     const totalGrams = gramsPerKg * kg;
     const row = document.createElement("tr");
 
@@ -99,9 +120,9 @@ function updateResults() {
     resultsTableBody.appendChild(row);
   });
 
-  if (recipe.cookTime && recipe.cookTime > 0) {
+    if (finalCookTime && finalCookTime > 0) {
     cookTimeP.textContent =
-      `Temps de cocció recomanat: ${recipe.cookTime} minuts aproximadament.`;
+      `Temps de cocció recomanat: ${finalCookTime} minuts aproximadament.`;
   } else {
     cookTimeP.textContent = "";
   }
@@ -116,7 +137,7 @@ document.querySelectorAll(".recipe-button").forEach((btn) => {
 
 backButton.addEventListener("click", goHome);
 kgInput.addEventListener("input", updateResults);
-const CONFIG_KEY = "matances_config";
+const CONFIG_KEY = "matances_config_by_recipe";
 const configBtn = document.getElementById("configBtn");
 
 if (configBtn) {
