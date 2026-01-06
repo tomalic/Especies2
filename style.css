@@ -48,12 +48,6 @@ main{
   display: flex;
   flex-direction: column;
 }
-#home-screen,
-#calculator-screen{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
 
 h2 {
   font-size: 1.3rem;
@@ -281,4 +275,19 @@ h2 {
 
 .config-actions .config-btn{
   width: 100%;
+}
+/* --- Screen switching (override) --- */
+#home-screen.hidden,
+#calculator-screen.hidden{
+  display: none !important;
+}
+
+#home-screen:not(.hidden),
+#calculator-screen:not(.hidden){
+  display: flex !important;
+  flex-direction: column;
+  flex: 1;
+}
+.hidden .bottom-panel{
+  display:none !important;
 }
